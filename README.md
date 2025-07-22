@@ -7,6 +7,7 @@ This repository contains an example of deploying a lightweight Llama-based chatb
 - `TinyLlamaFunction/` – Azure Function implementation.
 - `host.json` – Azure Functions host configuration.
 - `requirements.txt` – Python dependencies.
+- `.github/workflows/` – GitHub Actions workflow for deployment.
 
 ## Local Development
 
@@ -21,6 +22,14 @@ This repository contains an example of deploying a lightweight Llama-based chatb
    func start
    ```
 3. Send a POST request with JSON `{ "prompt": "Hello" }` to `http://localhost:7071/api/TinyLlamaFunction`.
+
+## Deployment with GitHub Actions
+
+1. Create an Azure Function App in your Azure subscription.
+2. In the Azure portal, navigate to the function app and download the **publish profile**.
+3. In your GitHub repository settings, add a new secret named `AZURE_FUNCTIONAPP_PUBLISH_PROFILE` and paste the contents of the publish profile.
+4. Add another secret `AZURE_FUNCTIONAPP_NAME` containing the name of your function app.
+5. Push your code to the `main` branch. The included workflow (`.github/workflows/deploy.yml`) installs dependencies and publishes the app using the publish profile.
 
 ## Notes
 
